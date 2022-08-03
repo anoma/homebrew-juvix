@@ -18,7 +18,7 @@ class Juvix < Formula
   
     
     def install
-      system "make"
+      system "make install"
       prefix.install "README.org"
       prefix.install "LICENSE" 
     end
