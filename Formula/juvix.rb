@@ -23,8 +23,10 @@ class Juvix < Formula
     # depends_on "d12frosted/emacs-plus/emacs-plus@28" => :optional
   
     bottle do
-      rebuild 1
-      sha256 cellar: :any_skip_relocation, monterey: "bfb13754cc4ccacadb9917a772fe7fb6e6ba6d0364c75d57520ccd68980f8e58"
+      root_url "https://github.com/anoma/juvix/releases/download/v0.2.2"
+      sha256 cellar: :any_skip_relocation, arm64_monterey: "56da70e13fcfc70f180b1a999a80a19be779d589d28d06d99390e08bc53eede4"
+  end
+      sha256 cellar: :any_skip_relocation, x86_64_monterey: "bfb13754cc4ccacadb9917a772fe7fb6e6ba6d0364c75d57520ccd68980f8e58"
     end
     
     def install
