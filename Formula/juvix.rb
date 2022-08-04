@@ -22,6 +22,10 @@ class Juvix < Formula
     depends_on "stack" => :build
     # depends_on "d12frosted/emacs-plus/emacs-plus@28" => :optional
   
+    bottle do
+      rebuild 1
+      sha256 cellar: :any_skip_relocation, monterey: "bfb13754cc4ccacadb9917a772fe7fb6e6ba6d0364c75d57520ccd68980f8e58"
+    end
     
     def install
       jobs = ENV.make_jobs
