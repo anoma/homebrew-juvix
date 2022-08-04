@@ -5,7 +5,8 @@ class Juvix < Formula
     license "AGPL-3.0-or-later"
     
     stable do
-      url "https://github.com/anoma/juvix/archive/refs/tags/v0.2.2.tar.gz"
+      url "https://github.com/anoma/juvix.git", branch: "main"
+      version "0.2.2"
       sha256 "6c4cff2655c2f13d0770c40e5473b03f25cc049edc73b4f3c4458013032f70ec"
     end
     
