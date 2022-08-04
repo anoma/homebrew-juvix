@@ -10,9 +10,8 @@ class Juvix < Formula
     end
     
     head do
-      url "https://github.com/anoma/juvix/archive/refs/tags/v0.2.2.tar.gz", branch: "main"
+      url "https://github.com/anoma/juvix.git", branch: "main"
     end
-  
   
     # option "with-emacs", "Install Emacs Plus v28"
     option "without-stack", "Do not install Haskell-Stack"
