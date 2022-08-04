@@ -13,3 +13,9 @@ Remember to update your homebrew:
 ```
 brew update
 ```
+
+Testing the formula:
+
+```
+ brew audit --strict juvix
+```
