@@ -25,9 +25,16 @@ class Juvix < Formula
     
     def install
       jobs = ENV.make_jobs
+      # Let `stack` parallelize
       ENV.deparallelize { system "stack", "-j#{jobs}", "setup", "9.2.3", "--stack-root", buildpath/".stack" }
       ENV.prepend_path "PATH", Dir[buildpath/".stack/programs/*/ghc-*/bin"].first
-      system "make", "install"
+      ghc_args = [
+        "--system-ghc",
+        "--no-install-ghc",
+        "--skip-ghc-check",
+      ]
+      system "stack", "-j#{jobs}", "build", *ghc_args
+      system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install", *ghc_args
     end
 
   end
