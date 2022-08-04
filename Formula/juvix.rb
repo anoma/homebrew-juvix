@@ -1,8 +1,9 @@
 class Juvix < Formula
     desc "The Juvix compiler"
     homepage "https://juvix.org"
-    head "https://github.com/anoma/juvix.git", branch: "main"
-    # version "0.2.2"
+    url "https://github.com/anoma/juvix.git", branch: "main"
+    # head "https://github.com/anoma/juvix.git", branch: "main"
+    version "0.2.3"
     license "AGPL-3.0-or-later"
     
     stable do
