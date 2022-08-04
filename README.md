@@ -19,3 +19,9 @@ Testing the formula:
 ```
  brew audit --strict juvix
 ```
+
+Make the bottle using the sources at `HEAD`:
+
+```
+brew update && brew install --build-bottle --HEAD juvix --verbose
+```
