@@ -24,10 +24,10 @@ class Juvix < Formula
   
     
     def install
+      jobs = ENV.make_jobs
+      ENV.deparallelize { system "stack", "-j#{jobs}", "setup", "9.2.3", "--stack-root", buildpath/".stack" }
+      ENV.prepend_path "PATH", Dir[buildpath/".stack/programs/*/ghc-*/bin"].first
       system "make", "install"
     end
-  
-    # test do
-    #   system "make", "test-shell"
-    # end
+
   end
