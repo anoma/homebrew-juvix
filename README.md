@@ -12,6 +12,12 @@ brew tap anoma/juvix
 brew install juvix
 ```
 
+If you want to build Juvix from the sources and see what's exactly is going on, run:
+
+```
+brew install --build-from-source juvix --verbose
+```
+
 ## Extra
 
 Homebrew provides the following way to audit a formula. Let's
