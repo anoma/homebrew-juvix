@@ -44,12 +44,12 @@ class Juvix < Formula
 
     def caveats
       # maybe use #{HOMEBREW_PREFIX}/share/autojump
-      <<~EOS
-        ============================ Juvix mode for Emacs ==============================   
+      ohai "============================ Juvix mode for Emacs =============================="
+      <<~EOS    
         To install the Juvix mode for your Emacs, please add the following lines
         to your configuration file, usually named ".emacs.d".
           
-          (push "#{prefix}/juvix-mode/" load-path)
+          (push "#{share}/juvix-mode/" load-path)
               (require 'juvix-mode)
             
         Restart Emacs for the settings to take effect. Now,the Juvix mode will be
