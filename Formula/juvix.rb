@@ -14,13 +14,12 @@ class Juvix < Formula
       url "https://github.com/anoma/juvix.git", branch: "main"
     end
   
-    option "with-emacs", "Install Emacs Plus v28"
     option "without-stack", "Do not install Haskell-Stack"
     
     depends_on "make" => :build
     depends_on "llvm" => :build
     depends_on "stack" => :build
-    depends_on "d12frosted/emacs-plus/emacs-plus@28" => :optional
+    # depends_on "d12frosted/emacs-plus/emacs-plus@28" => :optional
   
     bottle do
       root_url "https://github.com/anoma/juvix/releases/download/v0.2.2"
