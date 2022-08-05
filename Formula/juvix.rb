@@ -38,24 +38,39 @@ class Juvix < Formula
       system "stack", "-j#{jobs}", "build" , *opts
       system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
       share.install Dir["juvix-mode/*"]
+      share.install Dir["examples/*"]
     end
 
     def caveats
       <<~EOS
+        =============================== Juvix examples =================================
+        To see all the Juvix example files, check out the path:
+
+          #{share}/examples/milestone
+
+        There, you might want to typecheck a Juvix file. For example, run:
+        
+          juvix typecheck Fibonacci/Fibonacci.juvix
+
         ============================ Juvix mode for Emacs ==============================
-        To install the Juvix mode for your Emacs, please add the following lines
-        to your configuration file, usually named ".emacs.d".
+        To install the Juvix mode in Emacs, please add the following lines to the
+        configuration file (often at "~/.emacs.d").
           
           (push "#{share}" load-path)
               (require 'juvix-mode)
             
-        Restart Emacs for the settings to take effect. Now,the Juvix mode will be
-        activated automatically for files of extension ".juvix".
+        Restart Emacs to take effect the change. Open Emacs again and the Juvix mode
+        will be activated automatically for files of extension ".juvix".
         
         To typecheck a Juvix file using the keybinding, press "Ctrl-c + Ctrl-l".
         
+        In case you're missing emacs, we recommend you to install it as follows on MacOS:
+
+          brew tap d12frosted/emacs-plus
+          brew install emacs-plus@28
+        
         ====================== Install the auto-completion Scripts =====================
-        Run the following command to get Juvix CLI completions for your shell.
+        To get the Juvix CLI completions for your shell, run the following:
 
         * Bash
           juvix --bash-completion-script juvix > ~/.bashrc
@@ -66,15 +81,16 @@ class Juvix < Formula
         * ZSH 
           juvix --zsh-completion-script juvix > $DIR_IN_FPATH/_juvix
         
-        where $DIR_IN_FPATH is a directory that is present on the ZSH FPATH
+        The variable $DIR_IN_FPATH is a directory that is present on the ZSH FPATH
         variable (which you can inspect by running `echo $FPATH` in the shell).
         
         Restart your terminal for the settings to take effect.
         
         ======================== Compile Juvix programs to WASM ========================  
-        Please follow the instructions given on the website to install wasmer, Clang
-        LLVM, wasi-sdk,and wasm-ld:
-        https://docs.juvix.org/getting-started/dependencies.html
+        To compile Juvix to WASM, please follow the instructions on the website.
+        The requirement are: wasmer, Clang/LLVM, wasi-sdk,and wasm-ld/
+        
+          https://docs.juvix.org/getting-started/dependencies.html
         
         ============================ Getting more help =================================
         To see all the Juvix commands, run:
