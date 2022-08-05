@@ -48,13 +48,13 @@ class Juvix < Formula
         To install the Juvix mode for your Emacs, please add the following lines
         to your configuration file, usually named ".emacs.d".
 
-          (push "#{HOMEBREW_PREFIX}/share/juvix/juvix-mode/" load-path)
+          (push "#{bin}/juvix/juvix-mode/" load-path)
           (require 'juvix-mode)
         
         Restart Emacs for the settings to take effect. Now,the Juvix mode will be
         activated automatically for files of extension ".juvix".
         
-        To typecheck a Juvix file using the keybinding, press "Ctrl c + Ctrl l".
+        To typecheck a Juvix file using the keybinding, press "Ctrl-c + Ctrl-l".
 
         == Install the auto-completion Scripts =========================================
         Run the following command to get Juvix CLI completions for your shell.
@@ -73,7 +73,19 @@ class Juvix < Formula
 
         Restart your terminal for the settings to take effect.
 
-        Tp see all the juvix commands, run:
+        == Compile Juvix programs to WASM  =============================================
+
+        Please follow the instructions given on the website
+          https://docs.juvix.org/getting-started/dependencies.html
+        to install the following requirements:
+         * wasmer
+         * Clang / LLVM
+         * wasi-sdk
+         * wasm-ld
+
+        == Get help!  ==================================================================
+        
+        To see all the Juvix commands, run:
 
           juvix --help
 
