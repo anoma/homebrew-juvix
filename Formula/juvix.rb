@@ -44,14 +44,17 @@ class Juvix < Formula
     def caveats
       # maybe use #{HOMEBREW_PREFIX}/share/autojump
       <<~EOS
-        == Install the Juvix mode for Emacs text editor ================================   
-        Add the following lines to your Emacs configuration file:
+        == Juvix mode for Emacs ========================================================   
+        To install the Juvix mode for your Emacs, please add the following lines
+        to your configuration file, usually named ".emacs.d".
 
           (push "#{HOMEBREW_PREFIX}/share/juvix/juvix-mode/" load-path)
           (require 'juvix-mode)
         
-        The Juvix mode will be activated automatically for files of extension ".juvix".
-        To typecheck a Juvix file use the keybinding: "Ctrl c + Ctrl l".
+        Restart Emacs for the settings to take effect. Now,the Juvix mode will be
+        activated automatically for files of extension ".juvix".
+        
+        To typecheck a Juvix file using the keybinding, press "Ctrl c + Ctrl l".
 
         == Install the auto-completion Scripts =========================================
         Run the following command to get Juvix CLI completions for your shell.
@@ -70,7 +73,7 @@ class Juvix < Formula
 
         Restart your terminal for the settings to take effect.
 
-        For see all the juvix commands, run:
+        Tp see all the juvix commands, run:
 
           juvix --help
 
