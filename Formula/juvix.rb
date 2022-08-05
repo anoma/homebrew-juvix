@@ -75,13 +75,8 @@ class Juvix < Formula
 
         == Compile Juvix programs to WASM  =============================================
 
-        Please follow the instructions given on the website
+        Please follow the instructions given on the website to install wasmer, Clang/LLVM, wasi-sdk,and wasm-ld:
           https://docs.juvix.org/getting-started/dependencies.html
-        to install the following requirements:
-         * wasmer
-         * Clang / LLVM
-         * wasi-sdk
-         * wasm-ld
 
         == How to get help  ============================================================
         
@@ -100,7 +95,6 @@ class Juvix < Formula
 
         To see later this instructions, you can run
           brew info juvix
-
       EOS
     end
 
