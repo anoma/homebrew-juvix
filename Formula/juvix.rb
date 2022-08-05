@@ -38,7 +38,7 @@ class Juvix < Formula
       system "stack", "-j#{jobs}", "build" , *opts
       system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
 
-      bin.install Dir["juvix-mode"]
+      prefix.install Dir["juvix-mode/*"]
     end
 
     def caveats
@@ -48,7 +48,7 @@ class Juvix < Formula
         To install the Juvix mode for your Emacs, please add the following lines
         to your configuration file, usually named ".emacs.d".
           
-          (push "#{bin}/juvix/juvix-mode/" load-path)
+          (push "#{prefix}/juvix-mode/" load-path)
               (require 'juvix-mode)
             
         Restart Emacs for the settings to take effect. Now,the Juvix mode will be
