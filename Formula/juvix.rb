@@ -43,9 +43,8 @@ class Juvix < Formula
     end
 
     def caveats
-      # maybe use #{HOMEBREW_PREFIX}/share/autojump
-      ohai "============================ Juvix mode for Emacs =============================="
-      <<~EOS    
+      <<~EOS
+        ============================ Juvix mode for Emacs ==============================
         To install the Juvix mode for your Emacs, please add the following lines
         to your configuration file, usually named ".emacs.d".
           
@@ -89,22 +88,19 @@ class Juvix < Formula
         For more documentation, please checkout the Juvix Book website:
           https://docs.juvix.org
 
-        or open a discussion:
-          https://github.com/anoma/juvix/discussions
-
-        or open an issue:
-          https://github.com/anoma/juvix/issues
-        
-        or better, join us on Discord for online support:
+        or the Github repository:
+          https://github.com/anoma/juvix
+       
+        or even better, join us on Discord for online support:
           https://discord.gg/PpDqtCjy
 
-        To see these instructions later, run:
+        To see these instructions, run:
           brew info juvix
       EOS
     end
 
     test do
-      stdlibtest = testpath/"Fibonacci.agda"
+      stdlibtest = testpath/"Fibonacci.juvix"
       stdlibtest.write <<~EOS
       module Fibonacci;
       
