@@ -38,7 +38,7 @@ class Juvix < Formula
       system "stack", "-j#{jobs}", "build" , *opts
       system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
 
-      prefix.install Dir["juvix-mode/*"]
+      prefix.install Dir["#{buildpath}/juvix-mode/*"]
     end
 
     def caveats
