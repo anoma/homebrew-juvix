@@ -83,14 +83,24 @@ class Juvix < Formula
          * wasi-sdk
          * wasm-ld
 
-        == Get help!  ==================================================================
+        == How to get help  ============================================================
         
         To see all the Juvix commands, run:
-
           juvix --help
+
+        To check your setup, run:
+          juvix doctor
 
         For more documentation, please checkout the Juvix Book website:
           https://docs.juvix.org
+        or open a discussion:
+          https://github.com/anoma/juvix/discussions
+        or open an issue:
+          https://github.com/anoma/juvix/issues
+
+        To see later this instructions, you can run
+          brew info juvix
+
       EOS
     end
 
