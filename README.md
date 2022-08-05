@@ -12,13 +12,14 @@ brew tap anoma/juvix
 brew install juvix
 ```
 
-## Formula testing
+## Extra
+
+Homebrew provides the following way to audit a formula. Let's
+use it against Juvix.
 
 ```
  brew audit --strict juvix
 ```
-
-## Extra
 
 If you want to make a Juvix bottle using the sources, run the following command:
 
