@@ -59,12 +59,12 @@ class Juvix < Formula
           (push "#{share}" load-path)
               (require 'juvix-mode)
             
-        Restart Emacs to take effect the change. Open Emacs again and the Juvix mode
-        will be activated automatically for files of extension ".juvix".
+        Restart Emacs for the change to take effect. Open Emacs again and the Juvix mode
+        will be activated automatically for files with extension ".juvix".
         
         To typecheck a Juvix file using the keybinding, press "Ctrl-c + Ctrl-l".
         
-        In case you're missing emacs, we recommend you to install it as follows on MacOS:
+        In case you're missing Emacs, we recommend you to install it as follows on MacOS:
 
           brew tap d12frosted/emacs-plus
           brew install emacs-plus@28
@@ -88,7 +88,7 @@ class Juvix < Formula
         
         ======================== Compile Juvix programs to WASM ========================  
         To compile Juvix to WASM, please follow the instructions on the website.
-        The requirement are: wasmer, Clang/LLVM, wasi-sdk,and wasm-ld/
+        The requirement are: wasmer, Clang/LLVM, wasi-sdk, and wasm-ld.
         
           https://docs.juvix.org/getting-started/dependencies.html
         
@@ -99,7 +99,7 @@ class Juvix < Formula
         To check your setup, run:
           juvix doctor
 
-        For more documentation, please checkout the Juvix Book website:
+        For more documentation, please check out the Juvix Book website:
           https://docs.juvix.org
 
         or the Github repository:
