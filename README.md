@@ -34,8 +34,13 @@ To uninstall Juvix using homebrew, run the command:
 ``` 
 brew uninstall juvix
 ``` 
+
 If you want to uninstall the formula as well, untap it by running:
 
 ```
 brew untap anoma/juvix
 ```
+
+The Juvix Homebrew formula was created following the guideline:
+
+- https://docs.brew.sh/Formula-Cookbook
