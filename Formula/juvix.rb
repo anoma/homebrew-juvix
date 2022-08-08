@@ -68,6 +68,13 @@ class Juvix < Formula
 
           brew tap d12frosted/emacs-plus
           brew install emacs-plus@28
+
+        ============================= Juvix VSCode =====================================
+
+        To install the Juvix syntax highlighting extension in VSCode, run the following
+        command:
+
+          git clone https://github.com/anoma/vscode-juvix ~/.vscode/extensions
         
         ====================== Install the auto-completion Scripts =====================
         To get the Juvix CLI completions for your shell, run the following:
