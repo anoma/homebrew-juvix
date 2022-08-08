@@ -86,8 +86,8 @@ class Juvix < Formula
         
         Restart your terminal for the settings to take effect.
         
-        ======================== Compile Juvix programs to WASM ========================  
-        To compile Juvix to WASM, please follow the instructions on the website.
+        ======================== Compile Juvix programs to Wasm ========================  
+        To compile Juvix to Wasm, please follow the instructions on the website.
         The requirement are: wasmer, Clang/LLVM, wasi-sdk, and wasm-ld.
         
           https://docs.juvix.org/getting-started/dependencies.html
