@@ -6,8 +6,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      # version "0.2.3"
-      sha256 "54a204a19b7ca86405b8f486b0036ffd7f433903"
+      version "0.2.3"
+      sha256 "ef4ddaf4dc8ded65897278bad9072da3f673e76c"
     end
     
     head do
