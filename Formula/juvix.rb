@@ -27,7 +27,7 @@ class Juvix < Formula
     bottle do
       root_url "https://github.com/anoma/juvix/releases/download/v0.2.3"
       sha256 cellar: :any_skip_relocation, arm64_monterey: "d89617f8ec50993d7815c14ec4f5fc471329d33d954b5f832bf4e977351ef913"
-      sha256 cellar: :any_skip_relocation, x86_64_monterey: "85e49bdd2e011472396fcb3fce58c1870569b347c4d8b2b1cc737374864c5a17"
+      sha256 cellar: :any_skip_relocation, x86_64_monterey: "4d27e0c2f0374caa20ff74682e470110fbd9f61b9859acf0e095487e538d6336"
     end
     
     def install
