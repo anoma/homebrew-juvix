@@ -6,8 +6,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.2.2"
-      sha256 "6c4cff2655c2f13d0770c40e5473b03f25cc049edc73b4f3c4458013032f70ec"
+      version "0.2.3"
+      sha256 "b8d9f911a2978bdca67ed99a191bb698c9f6c971"
     end
     
     head do
@@ -25,9 +25,9 @@ class Juvix < Formula
     depends_on "stack" => :build
   
     bottle do
-      root_url "https://github.com/anoma/juvix/releases/download/v0.2.2"
-      sha256 cellar: :any_skip_relocation, arm64_monterey: "56da70e13fcfc70f180b1a999a80a19be779d589d28d06d99390e08bc53eede4"
-      sha256 cellar: :any_skip_relocation, x86_64_monterey: "bfb13754cc4ccacadb9917a772fe7fb6e6ba6d0364c75d57520ccd68980f8e58"
+      root_url "https://github.com/anoma/juvix/releases/download/v0.2.3"
+      sha256 cellar: :any_skip_relocation, arm64_monterey: "1bf8ffae15bc5055eaa850937f43cf4b9b475c1f17c3a60520ef21072c719764"
+      sha256 cellar: :any_skip_relocation, x86_64_monterey: "85e49bdd2e011472396fcb3fce58c1870569b347c4d8b2b1cc737374864c5a17"
     end
     
     def install
@@ -71,10 +71,10 @@ class Juvix < Formula
 
         ============================= Juvix VSCode =====================================
 
-        To install the Juvix syntax highlighting extension in VSCode, run the following
-        command:
+        You can find the Juvix-Mode plugin in the VSCode marketplace. Alternatively, you
+        can run the following command:
 
-          git clone https://github.com/anoma/vscode-juvix ~/.vscode/extensions
+          ext install heliax.juvix-mode
         
         ====================== Install the auto-completion Scripts =====================
         To get the Juvix CLI completions for your shell, run the following:
