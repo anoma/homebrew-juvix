@@ -6,8 +6,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.2.3"
-      sha256 "ef4ddaf4dc8ded65897278bad9072da3f673e76c"
+      version "0.2.4"
+      sha256 "ff30fe9d05710c209ae998fc2762d577a4f7aa15"
     end
     
     head do
@@ -24,16 +24,16 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "stack" => :build
   
-    bottle do
-      root_url "https://github.com/anoma/juvix/releases/download/v0.2.3"
-      sha256 cellar: :any_skip_relocation, arm64_monterey: "d89617f8ec50993d7815c14ec4f5fc471329d33d954b5f832bf4e977351ef913"
-      sha256 cellar: :any_skip_relocation, x86_64_monterey: "4d27e0c2f0374caa20ff74682e470110fbd9f61b9859acf0e095487e538d6336"
-    end
+#     bottle do
+#       root_url "https://github.com/anoma/juvix/releases/download/v0.2.4"
+#       sha256 cellar: :any_skip_relocation, arm64_monterey: "d89617f8ec50993d7815c14ec4f5fc471329d33d954b5f832bf4e977351ef913"
+#       sha256 cellar: :any_skip_relocation, x86_64_monterey: "4d27e0c2f0374caa20ff74682e470110fbd9f61b9859acf0e095487e538d6336"
+#     end
     
     def install
       jobs = ENV.make_jobs
       opts = [ "--stack-root", buildpath/".stack" ]
-      ENV.deparallelize { system "stack", "-j#{jobs}", "setup", "9.2.3", *opts }
+      ENV.deparallelize { system "stack", "-j#{jobs}", "setup", "9.2.4", *opts }
       ENV.prepend_path "PATH", Dir[buildpath/".stack/programs/*/ghc-*/bin"].first
       system "stack", "-j#{jobs}", "build" , *opts
       system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
