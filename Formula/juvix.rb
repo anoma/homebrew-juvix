@@ -46,7 +46,7 @@ class Juvix < Formula
         =============================== Juvix examples =================================
         To see all the Juvix example files, check out the path:
 
-          #{share}/examples/milestone
+          #{share}/milestone
 
         There, you might want to typecheck a Juvix file. For example, run:
         
