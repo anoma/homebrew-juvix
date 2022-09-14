@@ -6,8 +6,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.2.4"
-      sha256 "ff30fe9d05710c209ae998fc2762d577a4f7aa15"
+      version "0.2.5"
+      sha256 "9e6b82335288be0ff61d1f1b55568a2ba7a0b025"
     end
     
     head do
@@ -24,11 +24,11 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "stack" => :build
   
-    bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.2.4"
-        sha256 cellar: :any_skip_relocation, arm64_monterey: "d1aeef498ecb1a994ce630ec85fa60ddc9db6b20e1f986369765a1f91427a6d7"
-        sha256 cellar: :any_skip_relocation, x86_64_monterey: "5e443516205f9a75e789e76c5122b11b90986b56c45a2b0c71a4e264fb2dd98d"
-    end
+#     bottle do
+#         root_url "https://github.com/anoma/juvix/releases/download/v0.2.5"
+#         sha256 cellar: :any_skip_relocation, arm64_monterey: "d1aeef498ecb1a994ce630ec85fa60ddc9db6b20e1f986369765a1f91427a6d7"
+#         sha256 cellar: :any_skip_relocation, x86_64_monterey: "5e443516205f9a75e789e76c5122b11b90986b56c45a2b0c71a4e264fb2dd98d"
+#     end
     
     def install
       jobs = ENV.make_jobs
@@ -72,7 +72,7 @@ class Juvix < Formula
         ============================= Juvix VSCode =====================================
 
         You can find the Juvix-Mode plugin in the VSCode marketplace. Alternatively, you
-        can run the following command:
+        can run the following command on your shell:
 
           ext install heliax.juvix-mode
         
