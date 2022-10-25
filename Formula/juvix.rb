@@ -6,8 +6,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.2.5"
-      sha256 "9e6b82335288be0ff61d1f1b55568a2ba7a0b025"
+      version "0.2.6"
+      sha256 "17e3a3720365a42c978e566b3679ce9b57311f1e"
     end
     
     head do
@@ -25,9 +25,9 @@ class Juvix < Formula
     depends_on "stack" => :build
   
     bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.2.5"
-        sha256 cellar: :any_skip_relocation, arm64_monterey: "a43cb83843aee897deaab443e8842b222b7a6036714df04eb5ac3162a04c501e"
-        sha256 cellar: :any_skip_relocation, x86_64_monterey: "e97ac4f7a3850af7cb11ef36405739ed9de6fbdc4b5b44ab849403f8839064b6"
+        root_url "https://github.com/anoma/juvix/releases/download/v0.2.6"
+#         sha256 cellar: :any_skip_relocation, arm64_monterey: "a43cb83843aee897deaab443e8842b222b7a6036714df04eb5ac3162a04c501e"
+#         sha256 cellar: :any_skip_relocation, x86_64_monterey: "e97ac4f7a3850af7cb11ef36405739ed9de6fbdc4b5b44ab849403f8839064b6"
     end
     
     def install
@@ -127,15 +127,15 @@ class Juvix < Formula
       
       open import Stdlib.Prelude;
       
-      fib : ℕ → ℕ → ℕ → ℕ;
-      fib zero x1 _ ≔ x1;
-      fib (suc n) x1 x2 ≔ fib n x2 (x1 + x2);
+      fib : Nat -> Nat -> Nat -> Nat;
+      fib zero x1 _ := x1;
+      fib (suc n) x1 x2 := fib n x2 (x1 + x2);
       
-      fibonacci : ℕ → ℕ;
-      fibonacci n ≔ fib n 0 1;
+      fibonacci : Nat -> Nat;
+      fibonacci n := fib n 0 1;
 
       main : IO;
-      main ≔ putStrLn (natToStr (fibonacci 25));
+      main := putStrLn (natToStr (fibonacci 25));
       end;
       EOS
   
