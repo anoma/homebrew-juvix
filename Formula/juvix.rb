@@ -26,16 +26,15 @@ class Juvix < Formula
   
     bottle do
         root_url "https://github.com/anoma/juvix/releases/download/v0.2.7"
-        # sha256 cellar: :any_skip_relocation, arm64_monterey: "3396606062bc89809830038f882c77aa1d9720b0cf8a1d3f845f5b70033b4419"
-        # sha256 cellar: :any_skip_relocation, x86_64_monterey: "a8279fec764c730aeec20f42e54ac37eb4500979d6e9c89680ce531401ab8420"
+        sha256 cellar: :any_skip_relocation, arm64_monterey: "d291c013d8338bdb65190524a9bdd7b33c8f3671d311f489f3ad29f82fb7acee"
+        sha256 cellar: :any_skip_relocation, x86_64_monterey: "76ba8fba40423944f8c7eba943baf90f2444521251778327cc8d015c7b23fe85"
     end
     
     def install
       jobs = ENV.make_jobs
       opts = [ "--stack-root", buildpath/".stack" ]
-      ENV.deparallelize { system "stack", "-j#{jobs}", "setup", "9.2.5", *opts }
-      ENV.prepend_path "PATH", Dir[buildpath/".stack/programs/*/ghc-*/bin"].first
-      system "make", "runtime"
+      # The runtime build must use the homebrew LLVM installation, not the one provided by macOS.
+      system "make", "runtime", "CC=#{Formula["llvm"].opt_bin}/clang"
       system "stack", "-j#{jobs}", "build" , *opts
       system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
       share.install Dir["juvix-mode/*"]
