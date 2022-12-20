@@ -6,8 +6,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.2.7"
-      sha256 "fb2723cb7530bc57cdf86f3d7479c74c8aed8047"
+      version "0.2.8"
+      sha256 "9a7b3d33da5bffc0087f670c136c17bcd2223284"
     end
     
     head do
@@ -24,11 +24,11 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "stack" => :build
   
-    bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.2.7"
-        sha256 cellar: :any_skip_relocation, arm64_monterey: "d291c013d8338bdb65190524a9bdd7b33c8f3671d311f489f3ad29f82fb7acee"
-        sha256 cellar: :any_skip_relocation, x86_64_monterey: "76ba8fba40423944f8c7eba943baf90f2444521251778327cc8d015c7b23fe85"
-    end
+#     bottle do
+#         root_url "https://github.com/anoma/juvix/releases/download/v0.2.7"
+#         sha256 cellar: :any_skip_relocation, arm64_monterey: "d291c013d8338bdb65190524a9bdd7b33c8f3671d311f489f3ad29f82fb7acee"
+#         sha256 cellar: :any_skip_relocation, x86_64_monterey: "76ba8fba40423944f8c7eba943baf90f2444521251778327cc8d015c7b23fe85"
+#     end
     
     def install
       jobs = ENV.make_jobs
