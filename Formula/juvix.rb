@@ -22,7 +22,7 @@ class Juvix < Formula
     
     depends_on "make" => :build
     depends_on "llvm" => :build
-    depends_on "stack" => :build
+    depends_on "ghcup" => :build
   
     bottle do
         root_url "https://github.com/anoma/juvix/releases/download/v0.3.0"
@@ -35,8 +35,13 @@ class Juvix < Formula
       opts = [ "--stack-root", buildpath/".stack" ]
       # The runtime build must use the homebrew LLVM installation, not the one provided by macOS.
       system "make", "runtime", "CC=#{Formula["llvm"].opt_bin}/clang", "LIBTOOL=#{Formula["llvm"].opt_bin}/llvm-ar"
-      system "stack", "-j#{jobs}", "build" , *opts
-      system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
+      with_env(
+        "LD" => "ld"
+      ) do
+        system "ghcup", "install", "stack", "--isolate", buildpath/".ghcup"
+        system buildpath/".ghcup/stack", "-j#{jobs}", "build" , *opts
+        system buildpath/".ghcup/bin/stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
+      end
       share.install Dir["juvix-mode/*"]
       share.install Dir["examples/*"]
     end
