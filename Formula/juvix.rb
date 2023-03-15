@@ -40,7 +40,7 @@ class Juvix < Formula
       ) do
         system "ghcup", "install", "stack", "--isolate", buildpath/".ghcup"
         system buildpath/".ghcup/stack", "-j#{jobs}", "build" , *opts
-        system buildpath/".ghcup/bin/stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
+        system buildpath/".ghcup/stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
       end
       share.install Dir["juvix-mode/*"]
       share.install Dir["examples/*"]
