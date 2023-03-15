@@ -34,7 +34,7 @@ class Juvix < Formula
       jobs = ENV.make_jobs
       opts = [ "--stack-root", buildpath/".stack" ]
       # The runtime build must use the homebrew LLVM installation, not the one provided by macOS.
-      system "make", "runtime", "CC=#{Formula["llvm"].opt_bin}/clang"
+      system "make", "runtime", "CC=#{Formula["llvm"].opt_bin}/clang", "LIBTOOL=#{Formula["llvm"].opt_bin}/llvm-ar"
       system "stack", "-j#{jobs}", "build" , *opts
       system "stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
       share.install Dir["juvix-mode/*"]
