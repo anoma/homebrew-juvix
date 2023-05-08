@@ -6,8 +6,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.3.2"
-      sha256 "a9277945e4695464375888decb3c4ef760157069"
+      version "0.3.3"
+      sha256 "c2d8fa44bc49736008a15ff18256516c6c760420"
     end
     
     head do
@@ -24,11 +24,11 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "ghcup" => :build
   
-    bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.3.2"
-        sha256 cellar: :any_skip_relocation, arm64_ventura: "7e5fe98a643b39103f2438e4a208032ed7b3cbcc4c0ea89b7f3549e0d1c2dbaf"
-        sha256 cellar: :any_skip_relocation, x86_64_ventura: "dd2cf536c2ad1a5dfde015c3fd273a00cd98e478eadb0f19b4d2ec237c90ddba"
-    end
+    # bottle do
+    #     root_url "https://github.com/anoma/juvix/releases/download/v0.3.2"
+    #     sha256 cellar: :any_skip_relocation, arm64_ventura: "7e5fe98a643b39103f2438e4a208032ed7b3cbcc4c0ea89b7f3549e0d1c2dbaf"
+    #     sha256 cellar: :any_skip_relocation, x86_64_ventura: "dd2cf536c2ad1a5dfde015c3fd273a00cd98e478eadb0f19b4d2ec237c90ddba"
+    # end
 
     def install
       jobs = ENV.make_jobs
@@ -102,7 +102,7 @@ class Juvix < Formula
         To compile Juvix to Wasm, please follow the instructions on the website.
         The requirement are: wasmer, Clang/LLVM, wasi-sdk, and wasm-ld.
         
-          https://docs.juvix.org/getting-started/dependencies.html
+        https://docs.juvix.org/latest/howto/installing/
         
         ============================ Getting more help =================================
         To see all the Juvix commands, run:
@@ -116,9 +116,9 @@ class Juvix < Formula
 
         or the Github repository:
           https://github.com/anoma/juvix
-       
+
         or even better, join us on Discord for online support:
-          https://discord.gg/PpDqtCjy
+          https://discord.gg/v3d7hgGn
 
         To see these instructions, run:
           brew info juvix
@@ -129,19 +129,19 @@ class Juvix < Formula
       stdlibtest = testpath/"Fibonacci.juvix"
       stdlibtest.write <<~EOS
       module Fibonacci;
-      
+
       open import Stdlib.Prelude;
-      
-      fib : Nat -> Nat -> Nat -> Nat;
+
+      fib : Nat → Nat → Nat → Nat;
       fib zero x1 _ := x1;
       fib (suc n) x1 x2 := fib n x2 (x1 + x2);
-      
-      fibonacci : Nat -> Nat;
+
+      fibonacci : Nat → Nat;
       fibonacci n := fib n 0 1;
 
       main : IO;
-      main := putStrLn (natToStr (fibonacci 25));
-      end;
+      main := readLn (printNatLn ∘ fibonacci ∘ stringToNat);
+
       EOS
   
       assert_equal "Well done! It type checks\n", shell_output("#{bin}/juvix typecheck #{stdlibtest}")
