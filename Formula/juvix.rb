@@ -7,8 +7,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.3.3"
-      sha256 "c2d8fa44bc49736008a15ff18256516c6c760420"
+      version "0.3.4"
+      sha256 "3ec54b718955ce189bf95292382a69d7a39ffb19"
     end
     
     head do
@@ -26,9 +26,10 @@ class Juvix < Formula
     depends_on "ghcup" => :build
   
     bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.3.3"
-        sha256 cellar: :any_skip_relocation, arm64_ventura: "4dad2580945f33191e6bb50fcd52e22dc30b7fac9c357d3c0f21a47b884d5550"
+        root_url "https://github.com/anoma/juvix/releases/download/v0.3.4"
+        sha256 cellar: :any_skip_relocation, arm64_ventura: "b8aed90088c249e731af43e4ab93b88aaaca1ebf0df5df5cbd0e70d3c133bf6f"
         sha256 cellar: :any_skip_relocation, x86_64_ventura: "a2a351fe3c5e9484b7118c89aea14c43eb10a1163b5ce362967760018645989b"
+        sha256 cellar: :any_skip_relocation, monterey: "55582352d92d6dede799bb28e905a46a43f01af9e110f7029860f8868678e525"
     end
 
     def install
