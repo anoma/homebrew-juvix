@@ -34,7 +34,7 @@ To update after a Juvix release:
 1. Update the `version` and `sha256` fields of the `stable` block in the formula and push.
 2. Run `brew update`, `brew install --build-bottle juvix`, and `brew bottle juvix` to build the bottle for the release.
 3. Upload the bottle TAR file to the Juvix release artifacts. (NB: rename the TAR to match the naming scheme).
-4. Update the bottle block with details obtained from step 2 and push.
+4. Update the `bottle` block in the formula with details obtained from step 2 and push.
 5. Test that you can install Juvix using the bottle, `brew update`, `brew install juvix`, and `juvix --version`.
 
 ## Removing Juvix
