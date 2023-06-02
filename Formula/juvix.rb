@@ -26,8 +26,8 @@ class Juvix < Formula
     depends_on "ghcup" => :build
   
     bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.3.4"
-        sha256 cellar: :any_skip_relocation, arm64_ventura: "873d83efdda659719e2ace4fd9b637fde6c7e78b165089c0436924c6dbaed786"
+        root_url "https://github.com/anoma/juvix/releases/download/v0.3.5"
+        sha256 cellar: :any_skip_relocation, arm64_ventura: "6a47c8f99f7f4d8e355a179b98221a7b58d7c46abd4d97b6c1c3246bae7474ed"
         sha256 cellar: :any_skip_relocation, ventura: "6c845e0ade667f0c81e66a0b369a3e7beaf3c53b5c3bbf98e572293063976c5e"
         sha256 cellar: :any_skip_relocation, monterey: "55582352d92d6dede799bb28e905a46a43f01af9e110f7029860f8868678e525"
     end
