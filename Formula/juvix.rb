@@ -7,8 +7,8 @@ class Juvix < Formula
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.4"
-      sha256 "ae2d8b07a06de3a4094b1581cff18a70e6c46dac"
+      version "0.4.0"
+      sha256 "925d7cb749711168d9baf6fc176a06330398824e"
     end
     
     head do
@@ -26,7 +26,7 @@ class Juvix < Formula
     depends_on "ghcup" => :build
   
     bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.4"
+        root_url "https://github.com/anoma/juvix/releases/download/v0.4.0"
     end
 
     def install
@@ -115,9 +115,6 @@ class Juvix < Formula
 
         or the Github repository:
           https://github.com/anoma/juvix
-
-        or even better, join us on Discord for online support:
-          https://discord.gg/v3d7hgGn
 
         To see these instructions, run:
           brew info juvix
