@@ -4,6 +4,9 @@ class Juvix < Formula
     homepage "https://juvix.org"
     url "https://github.com/anoma/juvix.git", branch: "main"
     license "AGPL-3.0-or-later"
+
+    # This version must match the GHC version used by the stack resolver in the Juvix project
+    @@ghc_version = "9.2.7"
     
     stable do
       url "https://github.com/anoma/juvix.git", branch: "main"
@@ -23,7 +26,7 @@ class Juvix < Formula
     
     depends_on "make" => :build
     depends_on "llvm" => :build
-    depends_on "ghcup" => :build
+    depends_on "stack" => :build
   
     bottle do
         root_url "https://github.com/anoma/juvix/releases/download/v0.4.0"
@@ -31,20 +34,42 @@ class Juvix < Formula
         sha256 cellar: :any_skip_relocation, ventura: "c0efd50f71d8fcbe7cc410af3fa707dcc4afd19edfa8fcdfd29fa36e6d1a27b6"
     end
 
+    def get_system_architecture
+      require 'rbconfig'
+      RbConfig::CONFIG['host_cpu']
+    end
+
     def install
+      require "tmpdir"
       jobs = ENV.make_jobs
       opts = [ "--stack-root", buildpath/".stack" ]
       # The runtime build must use the homebrew LLVM installation, not the one provided by macOS.
       system "make", "runtime", "CC=#{Formula["llvm"].opt_bin}/clang", "LIBTOOL=#{Formula["llvm"].opt_bin}/llvm-ar"
-      with_env(
-        "LD" => "ld"
-      ) do
-        system "ghcup", "install", "stack", "--isolate", buildpath/".ghcup"
-        system buildpath/".ghcup/stack", "-j#{jobs}", "build" , *opts
-        system buildpath/".ghcup/stack", "-j#{jobs}", "--local-bin-path=#{bin}", "install"  , *opts
+      arch = get_system_architecture
+      ghc_basename = "ghc-#{@@ghc_version}-#{arch}-apple-darwin"
+      ghc_archive_name = "#{ghc_basename}.tar.xz"
+
+      ghc_root = Dir.mktmpdir
+      begin
+        ENV.prepend_path "PATH", "#{ghc_root}/bin"
+        with_env(
+          "LD" => "ld",
+        ) do
+          # We install GHC using the binary release directly because installation of GHC via ghcup
+          # or via stack in the formula context is not reliable.
+          system "curl", "-OL", "https://downloads.haskell.org/~ghc/#{@@ghc_version}/#{ghc_archive_name}"
+          system "tar", "xf", "#{ghc_archive_name}"
+          Dir.chdir("#{ghc_basename}") do
+            system "./configure", "--prefix=#{ghc_root}"
+            system "make", "install"
+          end
+          system "stack", "--system-ghc", "--no-install-ghc", "-j#{jobs}", "--local-bin-path=#{bin}", "install", *opts
+        end
+        share.install Dir["juvix-mode/*"]
+        share.install Dir["examples/*"]
+      ensure
+        FileUtils.remove_entry(ghc_root) if ghc_root
       end
-      share.install Dir["juvix-mode/*"]
-      share.install Dir["examples/*"]
     end
 
     def caveats
