@@ -2,20 +2,21 @@
 class Juvix < Formula
     desc "The Juvix compiler"
     homepage "https://juvix.org"
-    url "https://github.com/anoma/juvix.git", branch: "main"
+    @@repo = "anoma/juvix"
+    @@repo_url = "https://github.com/#{@@repo}.git"
+    @@repo_branch = "main"
+    @@juvix_version = "v0.4.0"
+    url @@repo_url, branch: @@repo_branch
     license "AGPL-3.0-or-later"
 
-    # This version must match the GHC version used by the stack resolver in the Juvix project
-    @@ghc_version = "9.2.7"
-    
     stable do
-      url "https://github.com/anoma/juvix.git", branch: "main"
-      version "0.4.0"
+      url @@repo_url, branch: @@repo_branch
+      version @@juvix_version
       sha256 "925d7cb749711168d9baf6fc176a06330398824e"
     end
     
     head do
-      url "https://github.com/anoma/juvix.git", branch: "main"
+      url @@repo_url, branch: @@repo_branch
     end
 
     livecheck do
@@ -29,9 +30,30 @@ class Juvix < Formula
     depends_on "stack" => :build
   
     bottle do
-        root_url "https://github.com/anoma/juvix/releases/download/v0.4.0"
-        sha256 cellar: :any_skip_relocation, arm64_ventura: "aeb02413753fdb3a5c427025e44f2eb1ac38510ff7911e99533c42f4a11cc7c4"
-        sha256 cellar: :any_skip_relocation, ventura: "c0efd50f71d8fcbe7cc410af3fa707dcc4afd19edfa8fcdfd29fa36e6d1a27b6"
+      root_url "#{@@repo_url.sub('.git', '')}/releases/download/#{@@juvix_version}"
+      sha256 cellar: :any_skip_relocation, arm64_ventura: "aeb02413753fdb3a5c427025e44f2eb1ac38510ff7911e99533c42f4a11cc7c4"
+      sha256 cellar: :any_skip_relocation, ventura: "c0efd50f71d8fcbe7cc410af3fa707dcc4afd19edfa8fcdfd29fa36e6d1a27b6"
+    end
+
+    def fetch_and_extract_ghc_version
+      require 'net/http'
+      require 'uri'
+      ghc_version = nil
+      cabal_project_url = "https://raw.githubusercontent.com/#{@@repo}/#{@@repo_branch}/cabal.project"
+      uri = URI.parse(cabal_project_url)
+      response = Net::HTTP.get_response(uri)
+    
+      if response.is_a?(Net::HTTPSuccess)
+        cabal_project_content = response.body
+        match = cabal_project_content.match(/with-compiler: ghc-([0-9.]+)/)
+        ghc_version = match[1] if match
+      else
+        raise "Failed to fetch cabal project content from #{cabal_project_url}"
+      end
+      if ghc_version.nil?
+        raise "Failed to extract GHC version from #{cabal_project_url}"
+      end
+      ghc_version
     end
 
     def get_system_architecture
@@ -46,7 +68,8 @@ class Juvix < Formula
       # The runtime build must use the homebrew LLVM installation, not the one provided by macOS.
       system "make", "runtime", "CC=#{Formula["llvm"].opt_bin}/clang", "LIBTOOL=#{Formula["llvm"].opt_bin}/llvm-ar"
       arch = get_system_architecture
-      ghc_basename = "ghc-#{@@ghc_version}-#{arch}-apple-darwin"
+      ghc_version = fetch_and_extract_ghc_version
+      ghc_basename = "ghc-#{ghc_version}-#{arch}-apple-darwin"
       ghc_archive_name = "#{ghc_basename}.tar.xz"
 
       ghc_root = Dir.mktmpdir
@@ -57,7 +80,7 @@ class Juvix < Formula
         ) do
           # We install GHC using the binary release directly because installation of GHC via ghcup
           # or via stack in the formula context is not reliable.
-          system "curl", "-OL", "https://downloads.haskell.org/~ghc/#{@@ghc_version}/#{ghc_archive_name}"
+          system "curl", "-OL", "https://downloads.haskell.org/~ghc/#{ghc_version}/#{ghc_archive_name}"
           system "tar", "xf", "#{ghc_archive_name}"
           Dir.chdir("#{ghc_basename}") do
             system "./configure", "--prefix=#{ghc_root}"
