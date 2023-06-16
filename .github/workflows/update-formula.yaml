@@ -40,6 +40,7 @@ jobs:
     env:
       HOMEBREW_NO_AUTO_UPDATE: 1
       HOMEBREW_NO_INSTALL_CLEANUP: 1
+      HOMEBREW_NO_INSTALL_FROM_API: 1
     steps:
       - name: Setup parameters
         run: |
@@ -75,6 +76,19 @@ jobs:
           --commit \
           --verbose \
           Formula/juvix.rb
+
+      - name: Build x86_64 bottle
+        working-directory: ${{ env.BREW_TAP_DIRECTORY }}
+        run: |
+          brew install --build-bottle --verbose --debug Formula/juvix.rb
+          brew bottle --write --root-url https://github.com/anoma/juvix/releases/download/v$JUVIX_VERSION Formula/juvix.rb
+
+      - name: Upload x86_64 bottle
+        working-directory: ${{ env.BREW_TAP_DIRECTORY }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: juvix-x86-bottle
+          path: juvix*.tar.gz
 
       - name: Push commit
         working-directory: ${{ env.BREW_TAP_DIRECTORY }}
