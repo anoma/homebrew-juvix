@@ -1,0 +1,88 @@
+name: Update formula
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Juvix version (e.g. 0.4.0)'
+        required: true
+      revision:
+        description: 'Juvix release git ref (e.g 925d7cb749711168d9baf6fc176a06330398824e)'
+
+jobs:
+  validate-input:
+    name: "Validate version string"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate version
+        run: |
+          JUVIX_VERSION="${{ github.event.inputs.version }}"
+          echo "::debug::version $JUVIX_VERSION"
+          if [[ ! $JUVIX_VERSION =~ ^[0-9]+(\.[0-9]+){2}$ ]]; then
+            echo
+            echo "::error::Bad version input"
+            exit 1
+          fi
+      - name: Validate revision
+        run: |
+          JUVIX_REVISION="${{ github.event.inputs.revision }}"
+          echo "::debug::revision $JUVIX_REVISION"
+          if [[ ! $JUVIX_REVISION =~ ^[a-f0-9]{40}$ ]]; then
+            echo
+            echo "::error::Bad revision input"
+            exit 1
+          fi
+
+  update-formula:
+    name: "Make a PR that updates the juvix formula"
+    needs: validate-input
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: 1
+      HOMEBREW_NO_INSTALL_CLEANUP: 1
+    steps:
+      - name: Setup parameters
+        run: |
+          JUVIX_VERSION="${{ github.event.inputs.version }}"
+          JUVIX_REVISION="${{ github.event.inputs.revision }}"
+
+          echo "::debug::version $JUVIX_VERSION"
+          echo "::debug::revision $JUVIX_REVISION"
+
+          echo "JUVIX_VERSION=$JUVIX_VERSION" >> $GITHUB_ENV
+          echo "JUVIX_REVISION=$JUVIX_REVISION" >> $GITHUB_ENV
+
+      - name: Tap formula
+        run: |
+          brew tap anoma/juvix
+          echo "BREW_TAP_DIRECTORY=$(brew --repository anoma/juvix)" >> $GITHUB_ENV
+
+      - name: Create branch
+        working-directory: ${{ env.BREW_TAP_DIRECTORY }}
+        run: |
+          BRANCH_NAME="juvix-formula-update-${JUVIX_VERSION}-${RANDOM}"
+          git checkout -b $BRANCH_NAME
+          git push -u origin $BRANCH_NAME
+
+      - name: Update homebrew formula
+        working-directory: ${{ env.BREW_TAP_DIRECTORY }}
+        run: |
+          brew bump-formula-pr \
+          --version $JUVIX_VERSION \
+          --revision $JUVIX_REVISION \
+          --no-audit \
+          --write-only \
+          --commit \
+          --verbose \
+          Formula/juvix.rb
+
+      - name: Push commit
+        working-directory: ${{ env.BREW_TAP_DIRECTORY }}
+        run: |
+          git push
+
+      - name: Open pull request
+        working-directory: ${{ env.BREW_TAP_DIRECTORY }}
+        run: |
+          git pr create \
+          --title "juvix $JUVIX_VERSION" \
+          --body "Created by update-formula action"
