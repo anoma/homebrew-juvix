@@ -29,11 +29,11 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "stack" => :build
   
-    # bottle do
-    #   root_url "https://github.com/anoma/juvix/releases/download/v0.4.3"
-    #   sha256 cellar: :any_skip_relocation, ventura: "f52269892e158205345384d8d2ee066c7e1f5ce08df586bd059f0313d0e0923d"
-    #   sha256 cellar: :any_skip_relocation, arm64_ventura: "8f7fe428111b9a08148c9e151509f720bb0c46ba67e1e7f250ff5458d1f5b206"
-    # end
+    bottle do
+      root_url "https://github.com/anoma/juvix/releases/download/v0.4.3"
+      sha256 cellar: :any_skip_relocation, arm64_ventura: "22a580079e41e588cc1995c7e5344abc29d65fe5c068ae1803f7d1aa9c0586b7"
+      sha256 cellar: :any_skip_relocation, ventura: "8ae38b21889b4a8fe7581d1b04cbae8ff38e2405362bea89ec155d05be5b9930"
+    end
 
     def get_system_architecture
       require 'rbconfig'
