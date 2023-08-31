@@ -6,13 +6,13 @@ class Juvix < Formula
     license "AGPL-3.0-or-later"
 
     # This version must match the GHC version used by the stack resolver in the Juvix project
-    @@ghc_version = "9.2.7"
+    @@ghc_version = "9.4.5"
     
     stable do
       url "https://github.com/anoma/juvix.git",
           using:    :git,
-          revision: "d27da6f17cb430e86141a0abb9389062cd67ecd3"
-      version "0.4.2"
+          revision: "56871a204c90c605944efbe0f551f58362eb5f12"
+      version "0.4.3"
     end
 
     head do
@@ -29,11 +29,11 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "stack" => :build
   
-    bottle do
-      root_url "https://github.com/anoma/juvix/releases/download/v0.4.2"
-      sha256 cellar: :any_skip_relocation, ventura: "f52269892e158205345384d8d2ee066c7e1f5ce08df586bd059f0313d0e0923d"
-      sha256 cellar: :any_skip_relocation, arm64_ventura: "8f7fe428111b9a08148c9e151509f720bb0c46ba67e1e7f250ff5458d1f5b206"
-    end
+    # bottle do
+    #   root_url "https://github.com/anoma/juvix/releases/download/v0.4.3"
+    #   sha256 cellar: :any_skip_relocation, ventura: "f52269892e158205345384d8d2ee066c7e1f5ce08df586bd059f0313d0e0923d"
+    #   sha256 cellar: :any_skip_relocation, arm64_ventura: "8f7fe428111b9a08148c9e151509f720bb0c46ba67e1e7f250ff5458d1f5b206"
+    # end
 
     def get_system_architecture
       require 'rbconfig'
