@@ -26,6 +26,7 @@ class Juvix < Formula
     option "without-stack", "Do not install Haskell-Stack"
     
     depends_on "make" => :build
+    depends_on "xz" => :build
     depends_on "llvm" => :build
     depends_on "stack" => :build
   
