@@ -38,7 +38,7 @@ class Juvix < Formula
 
     def get_system_architecture
       require 'rbconfig'
-      RbConfig::CONFIG['host_cpu']
+      RbConfig::CONFIG['build_cpu']
     end
 
     def install
