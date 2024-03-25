@@ -149,17 +149,15 @@ class Juvix < Formula
       stdlibtest.write <<~EOS
       module Fibonacci;
 
-      open import Stdlib.Prelude;
+      import Stdlib.Prelude open;
 
-      fib : Nat → Nat → Nat → Nat;
-      fib zero x1 _ := x1;
-      fib (suc n) x1 x2 := fib n x2 (x1 + x2);
+      fib (x1 x2 : Nat) : Nat -> Nat
+        | zero := x1
+        | (suc n) := fib x2 (x1 + x2) n;
 
-      fibonacci : Nat → Nat;
-      fibonacci n := fib n 0 1;
+      fibonacci (n : Nat) : Nat := fib 0 1 n;
 
-      main : IO;
-      main := readLn (printNatLn ∘ fibonacci ∘ stringToNat);
+      main : IO := readLn (printNatLn ∘ fibonacci ∘ stringToNat);
 
       EOS
   
