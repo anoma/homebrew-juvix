@@ -3,7 +3,7 @@ class Juvix < Formula
     desc "The Juvix compiler"
     homepage "https://juvix.org"
     url "https://github.com/anoma/juvix.git", branch: "main"
-    license "AGPL-3.0-or-later"
+    license "GPL-3.0"
 
     # This version must match the GHC version used by the stack resolver in the Juvix project
     @@ghc_version = "9.8.1"
