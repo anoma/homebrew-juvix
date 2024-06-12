@@ -32,7 +32,6 @@ class Juvix < Formula
     depends_on "rust" => :build
 
     bottle do
-      rebuild 1
       root_url "https://github.com/anoma/juvix/releases/download/v0.6.2"
       sha256 cellar: :any_skip_relocation, sonoma: "1896130c120c8fee9f69a3605624bc7eaf6e97be1a676d3bdb5cfcc0df8e28d7"
       sha256 cellar: :any_skip_relocation, arm64_sonoma: "df96e6f973e9c45c10d8afc428c9ba9a7a587e7f32b63440652046222d9e46bb"
