@@ -11,8 +11,8 @@ class Juvix < Formula
     stable do
       url "https://github.com/anoma/juvix.git",
           using:    :git,
-          revision: "4095cf3c3629bf67475e6c0106e0e8c943b24766"
-      version "0.6.2"
+          revision: "379e76b708cadde3fc5cada9880acead2b16ea2b"
+      version "0.6.3"
     end
 
     head do
@@ -30,12 +30,6 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "stack" => :build
     depends_on "rust" => :build
-
-    bottle do
-      root_url "https://github.com/anoma/juvix/releases/download/v0.6.2"
-      sha256 cellar: :any_skip_relocation, sonoma: "1896130c120c8fee9f69a3605624bc7eaf6e97be1a676d3bdb5cfcc0df8e28d7"
-      sha256 cellar: :any_skip_relocation, arm64_sonoma: "df96e6f973e9c45c10d8afc428c9ba9a7a587e7f32b63440652046222d9e46bb"
-    end
 
     def get_system_architecture
       require 'rbconfig'
@@ -164,7 +158,7 @@ class Juvix < Formula
 
       fibonacci (n : Nat) : Nat := fib 0 1 n;
 
-      main : IO := readLn (printNatLn ∘ fibonacci ∘ stringToNat);
+      main : IO := readLn (stringToNat >> fibonacci >> printNatLn)
 
       EOS
   
