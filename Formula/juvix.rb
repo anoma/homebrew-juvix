@@ -11,8 +11,8 @@ class Juvix < Formula
     stable do
       url "https://github.com/anoma/juvix.git",
           using:    :git,
-          revision: "4fe60ea85d79c2090db67e8f8a41154d7a4c85fc"
-      version "0.6.5"
+          revision: "e4559bbc87eb946c1b5c4db76ec8983a94201418"
+      version "0.6.6"
     end
 
     head do
@@ -31,11 +31,11 @@ class Juvix < Formula
     depends_on "stack" => :build
     depends_on "rust" => :build
 
-    bottle do
-      root_url "https://github.com/anoma/juvix/releases/download/v0.6.5"
-      sha256 cellar: :any_skip_relocation, sonoma: "2bbf969fae6714c4a2770e45db8e7ef91664706163e5ef347b2138d80533e11a"
-      sha256 cellar: :any_skip_relocation, arm64_sonoma: "702c45c1180a08546477e9cb13e947afe8d54da1026fe7be0ce77f711d76d907"
-    end
+    # bottle do
+    #   root_url "https://github.com/anoma/juvix/releases/download/v0.6.5"
+    #   sha256 cellar: :any_skip_relocation, sonoma: "2bbf969fae6714c4a2770e45db8e7ef91664706163e5ef347b2138d80533e11a"
+    #   sha256 cellar: :any_skip_relocation, arm64_sonoma: "702c45c1180a08546477e9cb13e947afe8d54da1026fe7be0ce77f711d76d907"
+    # end
 
     def get_system_architecture
       require 'rbconfig'
