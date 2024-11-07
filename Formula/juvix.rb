@@ -30,6 +30,7 @@ class Juvix < Formula
     depends_on "llvm" => :build
     depends_on "stack" => :build
     depends_on "rust" => :build
+    depends_on "lld" => :build
 
     # bottle do
     #   root_url "https://github.com/anoma/juvix/releases/download/v0.6.7"
