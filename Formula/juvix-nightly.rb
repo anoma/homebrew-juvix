@@ -1,9 +1,11 @@
 class JuvixNightly < Formula
   desc "The Juvix Compiler Nightly Build"
   homepage "https://github.com/anoma/juvix-nightly"
-  version "0.6.8-af19142"
 
-  nightly_tag = "nightly-2024-12-18-0.6.8-af19142"
+  juvix_version = "0.6.8-af19142"
+  version juvix_version
+
+  nightly_tag = "nightly-2024-12-18-#{juvix_version}"
 
   on_macos do
     on_intel do
