@@ -10,11 +10,11 @@ class JuvixNightly < Formula
   on_macos do
     on_intel do
       url  "https://github.com/anoma/juvix-nightly-builds/releases/download/#{nightly_tag}/juvix-darwin-x86_64.tar.gz"
-      sha256 "91a23ab9d77fe2fd05abf75cb9640b80a13549d76e8b2ad123882e1266cc27e2"
+      sha256 "b5d5466430491547f34399e3e430d150675caff7ec4976bcf11a58e48c460d7e"
     end
     on_arm do
       url "https://github.com/anoma/juvix-nightly-builds/releases/download/#{nightly_tag}/juvix-darwin-aarch64.tar.gz"
-      sha256 "6f24daf108ab805f5722ad9c0da88b3f432c842dd5dc13eb7308babb60873576"
+      sha256 "8e50abe026662134ffb1a0a417d171f93509635d7b08980006ff2a789e20cd7d"
     end
   end
 
