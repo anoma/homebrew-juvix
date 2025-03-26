@@ -1,16 +1,16 @@
 class Juvix < Formula
   desc "The Juvix Compiler"
   homepage "https://github.com/anoma/juvix"
-  version "0.6.9"
+  version "0.6.10"
 
   on_macos do
     on_intel do
       url  "https://github.com/anoma/juvix/releases/download/v#{version}/juvix-macos-x86_64.tar.gz"
-      sha256 "050e606f24ff6aeaa098bcb5223dcb92298279388aa93839acb7c5398d24a50e"
+      sha256 "a2340c298b00588f454e32a9590001ba1797f82b16f0e589e4fe4e9b3a155247"
     end
     on_arm do
       url "https://github.com/anoma/juvix/releases/download/v#{version}/juvix-macos-aarch64.tar.gz"
-      sha256 "ba9917d0af6b05cde17b4a160dd2e1476fe6ad4364ad35d0b71cbde973ddd2ae"
+      sha256 "d2cfdc955218930305223487e4f014ce16b19e97d681b5a006f87ea304d9b016"
     end
   end
 
